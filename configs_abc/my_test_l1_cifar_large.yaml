@@ -1,0 +1,19 @@
+# model:
+data:
+  dataset: CIFAR  # Dataset name. This is just the standard CIFAR-10 test set defined in the "load_verification_dataset()" function in utils.py
+  # mean: [0.4914, 0.4822, 0.4465]  # Mean for normalization.
+  # std: [0.2023, 0.1994, 0.2010]  # Std for normalization.
+  start: 0  # First example to verify in dataset.
+  end: 1000 
+  # std: [1.]
+  # mean: [0.]
+specification:
+  norm: 1  # Linf norm (can also be 2 or 1).
+  # epsilon: 0.5  # epsilon=36./255.
+  epsilon: 1.0
+attack:
+  pgd_order: skip
+solver:
+  batch_size: 1024
+bab:
+  timeout: 180

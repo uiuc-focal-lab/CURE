@@ -1,0 +1,17 @@
+# model:
+data:
+  dataset: MNIST
+  start: 0
+  end: 1000
+  std: [1.]
+  mean: [0.]
+specification:
+  norm: 1  # Linf norm (can also be 2 or 1).
+  # epsilon: 0.5  # epsilon=0.5
+  epsilon: 2.0  # epsilon=1.0
+attack:
+  pgd_order: skip
+solver:
+  batch_size: 1024
+bab:
+  timeout: 180
