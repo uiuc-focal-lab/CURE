@@ -5,8 +5,8 @@ Towards Universal Certified Robustness with Multi-Norm Training [[Arxiv]](https:
 ### Setup
 Create and activate a conda environment
 ```
-conda create --name SABR python=3.10.4
-conda activate SABR
+conda create --name CURE python=3.10.4
+conda activate CURE
 ```
 Install the requirements
 ```
