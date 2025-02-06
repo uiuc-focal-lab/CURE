@@ -6,13 +6,10 @@ TRAINING_SCRIPT="src/main.py  --net CNN7 --bn --bn2 --lr 0.0005 --custom_schedul
 --lambda_ratio 0.1 --shrinking_ratio 0.4 --use_shrinking_box \
 --shrinking_relu_state cross --shrinking_method to_zero_shrinking_box \
 --eps_test_L2 0.25 --eps_end_L2 0.25 --joint --lambda_ratio_L2 0.00001"
-# ANALYSIS_SCRIPT="analyse_model.py"
-# YAML_FILE="config.yaml"
-cd ~/SABR
-# source /opt/anaconda/etc/profile.d/conda.sh
-# conda deactivate
+
+cd ~/CURE
 source ~/anaconda3/bin/activate
-conda activate SABR
+conda activate CURE
 export PYTHONPATH=$PWD:$PYTHONPATH
 
 # Step 1: Run the training script and capture the output
@@ -25,21 +22,12 @@ if [ -z "$MODEL_PATH" ]; then
     exit 1
 fi
 echo "Model path extracted: $MODEL_PATH"
-# Step 3: Update the YAML file with the new model path
-# if [ -f "$YAML_FILE" ]; then
-#     sed -i "s|path: .*|path: $MODEL_PATH|" $YAML_FILE
-#     echo "YAML file $YAML_FILE updated with new model path."
-# else
-#     echo "Error: YAML file $YAML_FILE not found."
-#     exit 1
-# fi
 
 cd ~/alpha-beta-CROWN/complete_verifier/
 conda deactivate
 conda activate alpha-beta-crown
 
 # Step 4: Run the analysis script
-# python $ANALYSIS_SCRIPT
 python abcrown.py --config exp_configs/my_test_l2_cifar_small.yaml --complete_verifier skip --onnx_path $MODEL_PATH > out_l2_cifar_joint_small.txt
 python abcrown.py --config exp_configs/my_test_l1_cifar_small.yaml --complete_verifier skip --onnx_path $MODEL_PATH > out_l1_cifar_joint_small.txt
 python abcrown.py --config exp_configs/my_test_linf_cifar_small.yaml --complete_verifier skip --share_alphas --onnx_path $MODEL_PATH > out_linf_cifar_joint_small.txt
