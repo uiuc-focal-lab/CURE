@@ -1,6 +1,4 @@
 # Configuration file for running the cifar100_tinyimagenet_resnet benchmark (tinyimagenet model).
-model:
-  onnx_path: /home/enyij2/SABR/models/tinyimagenet/tinyimagenet__CNN7__bn_1_1__eps_0.00392157__lambda_0.4__2024_04_30-16_36_55/tinyimagenet__CNN7__bn_1_1__eps_0.00392157__lambda_0.4__2024_04_30-16_36_55.onnx
 data:
   dataset: Tiny
   num_outputs: 200
@@ -10,7 +8,7 @@ data:
 #   onnx_optimization_flags: merge_bn
 specification:
   norm: 2  # Linf norm (can also be 2 or 1).
-  epsilon: 0.141176471  # epsilon=36./255.
+  epsilon: 0.282352941  # epsilon=36./255.
 attack:
   pgd_order: skip
   # pgd_order: middle
